@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VapeCBD — премиальные CBD e-жидкости</title>
+  <meta name="description" content="VapeCBD — премиальные CBD e-жидкости 15 мл. Каталог, корзина, оформление заказа и выбор оплаты.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#top"><span>Vape</span>CBD</a>
+    <nav class="nav">
+      <a href="#catalog">Каталог</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#checkout">Заказ</a>
+    </nav>
+    <button class="cart-pill" id="openCart">Корзина <span id="cartCount">0</span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="age-badge">18+</div>
+        <h1>Премиальные CBD e-жидкости 15 мл</h1>
+        <p>Мягкость, качество и удовольствие в каждой затяжке. Удобный заказ прямо на сайте.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#catalog">Смотреть каталог</a>
+          <a class="btn ghost" href="#checkout">Оформить заказ</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="{{ url_for('static', filename='img/catalog.jpg') }}" alt="Каталог VapeCBD">
+      </div>
+    </section>
+
+    <section class="notice">
+      <strong>18+.</strong> Информация на сайте не является медицинской рекомендацией. Ассортимент и способы оплаты могут уточняться при оформлении.
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="section-head">
+        <p class="eyebrow">Каталог</p>
+        <h2>12 вкусовых позиций</h2>
+        <p>0.5% и 1% CBD · объём 15 мл · фото каждой позиции</p>
+      </div>
+
+      <div class="grid products-grid">
+        {% for product in products %}
+        <article class="product-card" data-product-id="{{ product.id }}">
+          <div class="product-img-wrap">
+            <img src="{{ url_for('static', filename='img/' ~ product.image) }}" alt="{{ product.name }} CBD {{ product.strength }}">
+          </div>
+          <div class="product-body">
+            <div>
+              <h3>{{ product.name }}</h3>
+              <p>CBD {{ product.strength }} · {{ product.volume }}</p>
+            </div>
+            <strong>{{ money(product.price) }}</strong>
+          </div>
+          <button class="btn add" data-id="{{ product.id }}">Добавить в корзину</button>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section split" id="delivery">
+      <div>
+        <p class="eyebrow">Доставка</p>
+        <h2>Удобные варианты получения</h2>
+        <p>Выберите способ доставки при оформлении заказа. Поддерживаются Почта России, СДЭК и самовывоз.</p>
+      </div>
+      <div class="feature-list">
+        <div>Почта России</div>
+        <div>СДЭК</div>
+        <div>Самовывоз</div>
+      </div>
+    </section>
+
+    <section class="section checkout-section" id="checkout">
+      <div class="section-head">
+        <p class="eyebrow">Оформление</p>
+        <h2>Заказ через сайт</h2>
+        <p>Заполните данные, выберите доставку и способ оплаты. Заявка отправится на почту магазина.</p>
+      </div>
+
+      <form class="checkout-form" id="checkoutForm">
+        <div class="form-grid">
+          <label>Имя<input name="name" required placeholder="Иван"></label>
+          <label>Telegram<input name="telegram" required placeholder="@username"></label>
+          <label>Email<input name="email" type="email" placeholder="email@example.com"></label>
+          <label>Доставка
+            <select name="delivery_method" required>
+              <option value="Почта России">Почта России</option>
+              <option value="СДЭК">СДЭК</option>
+              <option value="Самовывоз">Самовывоз</option>
+            </select>
+          </label>
+        </div>
+        <label>Адрес доставки или комментарий<textarea name="address" required placeholder="Город, адрес, ПВЗ или комментарий"></textarea></label>
+        <fieldset class="payment-options">
+          <legend>Способ оплаты</legend>
+          <label><input type="radio" name="payment_method" value="Карта" required> Карта</label>
+          <label><input type="radio" name="payment_method" value="QR"> QR</label>
+          <label><input type="radio" name="payment_method" value="Трансгран"> Трансгран</label>
+          <label><input type="radio" name="payment_method" value="USDT"> USDT</label>
+        </fieldset>
+        <button class="btn primary wide" type="submit">Перейти к оплате</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Корзина</h2>
+      <button id="closeCart">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="drawer-foot">
+      <div class="total"><span>Итого</span><strong id="cartTotal">0 ₽</strong></div>
+      <a class="btn primary wide" href="#checkout" id="goCheckout">Оформить</a>
+    </div>
+  </aside>
+
+  <footer class="footer">
+    <p>© VapeCBD</p>
+    <div>
+      <a href="{{ url_for('privacy') }}">Политика конфиденциальности</a>
+      <a href="{{ url_for('terms') }}">Пользовательское соглашение</a>
+    </div>
+  </footer>
+
+  <script>
+    window.PRODUCTS = {{ products|tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
