@@ -1,0 +1,14 @@
+Положите сюда изображения:
+catalog.jpg
+01_mango_05.jpg
+02_strawberry_05.jpg
+03_kiwi_05.jpg
+04_apple_05.jpg
+05_blueberry_05.jpg
+06_watermelon_05.jpg
+07_mango_1.jpg
+08_strawberry_1.jpg
+09_kiwi_1.jpg
+10_apple_1.jpg
+11_blueberry_1.jpg
+12_watermelon_1.jpg

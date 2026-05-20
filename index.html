@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VapeCBD — CBD e-жидкости 15 мл</title>
+  <style>
+    :root{--bg:#070908;--card:#101612;--text:#f4fff7;--muted:#a7b5aa;--green:#98ff68;--line:rgba(255,255,255,.1)}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at top,#17351e 0,#070908 36%,#030403 100%);color:var(--text);font-family:Inter,Arial,sans-serif}
+    a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:24px}
+    header{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0;position:sticky;top:0;background:rgba(7,9,8,.75);backdrop-filter:blur(16px);z-index:5}
+    .brand{font-weight:900;font-size:24px;letter-spacing:.5px}.brand span{color:var(--green)}
+    nav{display:flex;gap:14px;flex-wrap:wrap}nav a{color:var(--muted);text-decoration:none;font-size:14px}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;padding:54px 0}
+    .badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:var(--green);background:rgba(152,255,104,.08);font-size:14px}
+    h1{font-size:58px;line-height:.96;margin:20px 0 18px}.lead{font-size:19px;line-height:1.55;color:var(--muted);max-width:560px}
+    .hero img{width:100%;border-radius:28px;box-shadow:0 25px 80px rgba(0,0,0,.55);border:1px solid var(--line)}
+    .btn{border:0;border-radius:14px;padding:14px 18px;background:var(--green);color:#071007;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+    .btn.secondary{background:#151d17;color:var(--text);border:1px solid var(--line)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}section{padding:38px 0}h2{font-size:34px;margin:0 0 20px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .product{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 34px rgba(0,0,0,.25)}
+    .product img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover}
+    .pbody{padding:16px}.pbody h3{margin:0 0 8px;font-size:21px}.meta{color:var(--muted);font-size:14px;line-height:1.6}.price{font-size:24px;font-weight:900;margin:12px 0}
+    .wide{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.box{padding:22px;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:20px;color:var(--muted)}
+    .cart{position:fixed;right:18px;bottom:18px;width:min(420px,calc(100% - 36px));background:#0d120f;border:1px solid var(--line);border-radius:24px;box-shadow:0 20px 80px rgba(0,0,0,.6);padding:18px;z-index:10;display:none}
+    .cart.open{display:block}.cart h3{margin:0 0 12px}.cart-item{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:10px 0;color:var(--muted)}
+    .cart-item button{background:#1c251f;color:#fff;border:1px solid var(--line);border-radius:8px;cursor:pointer}
+    .field{display:grid;gap:6px;margin:10px 0}.field input,.field textarea,.field select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:#060806;color:#fff}
+    .small{color:var(--muted);font-size:13px;line-height:1.45}footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:14px}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}h1{font-size:42px}.grid{grid-template-columns:repeat(2,1fr)}.wide{grid-template-columns:1fr}}
+    @media(max-width:520px){.wrap{padding:16px}.grid{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">Vape<span>CBD</span></div>
+    <nav>
+      <a href="#catalog">Каталог</a><a href="#delivery">Доставка</a><a href="#payment">Оплата</a><a href="/privacy">Политика</a><a href="/terms">Соглашение</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="badge">18+ · Не является медицинской рекомендацией</div>
+        <h1>Премиальные CBD e-жидкости 15 мл</h1>
+        <p class="lead">Мягкость, качество и удовольствие. Выберите вкус, добавьте товары в корзину и оформите заказ прямо на сайте.</p>
+        <div class="actions">
+          <a class="btn" href="#catalog">Открыть каталог</a>
+          <button class="btn secondary" onclick="toggleCart()">Корзина <span id="cartCount">0</span></button>
+        </div>
+      </div>
+      <img src="/img/catalog.jpg" alt="VapeCBD каталог">
+    </section>
+
+    <section id="catalog">
+      <h2>Каталог</h2>
+      <div class="grid">
+        {% for p in products %}
+        <article class="product">
+          <img src="/img/{{ p.image }}" alt="{{ p.name }} CBD {{ p.cbd }}">
+          <div class="pbody">
+            <h3>{{ p.name }}</h3>
+            <div class="meta">CBD: {{ p.cbd }}<br>Объём: {{ p.volume }}</div>
+            <div class="price">{{ "{:,}".format(p.price).replace(",", " ") }} ₽</div>
+            <button class="btn" onclick='addToCart({{ p|tojson }})'>Купить</button>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section id="payment"><h2>Оплата</h2><div class="wide"><div class="box">💳 Оплата картой</div><div class="box">📲 QR</div><div class="box">🌍 Трансгран</div><div class="box">₮ USDT</div></div></section>
+    <section id="delivery"><h2>Доставка</h2><div class="wide"><div class="box">Почта России</div><div class="box">СДЭК</div><div class="box">Самовывоз</div></div></section>
+    <section><p class="small">18+. Информация на сайте не является медицинской рекомендацией. Перед использованием продукции учитывайте индивидуальные особенности и действующее законодательство вашего региона.</p></section>
+  </main>
+
+  <footer>VapeCBD © 2026 · <a href="/privacy">Политика конфиденциальности</a> · <a href="/terms">Пользовательское соглашение</a></footer>
+</div>
+
+<div class="cart" id="cart">
+  <h3>Корзина</h3>
+  <div id="cartItems"></div>
+  <p><b>Итого: <span id="cartTotal">0 ₽</span></b></p>
+  <div class="field"><input id="name" placeholder="Имя"></div>
+  <div class="field"><input id="telegram" placeholder="Telegram"></div>
+  <div class="field"><input id="email" placeholder="Email"></div>
+  <div class="field"><select id="deliveryMethod"><option>Почта России</option><option>СДЭК</option><option>Самовывоз</option></select></div>
+  <div class="field"><textarea id="address" placeholder="Адрес доставки или комментарий"></textarea></div>
+  <div class="field"><select id="paymentMethod"><option>Оплата картой</option><option>QR</option><option>Трансгран</option><option>USDT</option></select></div>
+  <button class="btn" style="width:100%;justify-content:center" onclick="submitOrder()">Оформить заказ</button>
+  <p class="small" id="orderStatus"></p>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+function formatMoney(x){ return x.toLocaleString("ru-RU") + " ₽"; }
+function save(){ localStorage.setItem("cart", JSON.stringify(cart)); renderCart(); }
+function toggleCart(){ document.getElementById("cart").classList.toggle("open"); renderCart(); }
+function addToCart(p){ const found = cart.find(i => i.id === p.id); if(found){ found.qty += 1; } else { cart.push({...p, qty: 1}); } save(); document.getElementById("cart").classList.add("open"); }
+function changeQty(id, delta){ const item = cart.find(i => i.id === id); if(!item) return; item.qty += delta; if(item.qty <= 0) cart = cart.filter(i => i.id !== id); save(); }
+function renderCart(){
+  const box = document.getElementById("cartItems");
+  const count = cart.reduce((s,i)=>s+i.qty,0);
+  const total = cart.reduce((s,i)=>s+i.qty*i.price,0);
+  document.getElementById("cartCount").textContent = count;
+  document.getElementById("cartTotal").textContent = formatMoney(total);
+  if(!cart.length){ box.innerHTML = "<p class='small'>Корзина пустая</p>"; return; }
+  box.innerHTML = cart.map(i => `<div class="cart-item"><div>${i.name} ${i.cbd}<br>${i.qty} × ${formatMoney(i.price)}</div><div><button onclick="changeQty(${i.id},-1)">−</button><button onclick="changeQty(${i.id},1)">+</button></div></div>`).join("");
+}
+async function submitOrder(){
+  if(!cart.length){ alert("Корзина пустая"); return; }
+  const data = {
+    name: document.getElementById("name").value,
+    telegram: document.getElementById("telegram").value,
+    email: document.getElementById("email").value,
+    delivery: document.getElementById("deliveryMethod").value,
+    address: document.getElementById("address").value,
+    payment: document.getElementById("paymentMethod").value,
+    items: cart
+  };
+  const res = await fetch("/order", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+  const json = await res.json();
+  document.getElementById("orderStatus").textContent = json.message || "Заказ отправлен";
+  if(json.ok){ cart = []; save(); }
+}
+renderCart();
+</script>
+</body>
+</html>
