@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VapeCBD — Premium CBD e-liquids</title>
+  <meta name="description" content="VapeCBD — премиальные CBD e-жидкости 15 мл. Каталог, корзина и оформление заказа. 18+.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="age-gate" id="ageGate">
+    <div class="age-card">
+      <div class="logo"><span></span>Vape<b>CBD</b></div>
+      <h1>Подтвердите возраст</h1>
+      <p>Сайт предназначен для пользователей 18+. Информация не является медицинской рекомендацией.</p>
+      <div class="age-actions">
+        <button class="btn" onclick="acceptAge()">Мне есть 18+</button>
+        <button class="btn ghost" onclick="location.href='https://google.com'">Покинуть сайт</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark"></span>
+      Vape<b>CBD</b>
+    </a>
+    <nav>
+      <a href="#catalog">Каталог</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#payment">Оплата</a>
+      <a href="privacy.html">Политика</a>
+      <a href="terms.html">Соглашение</a>
+    </nav>
+    <button class="cart-mini" onclick="openCart()">Корзина <span id="cartCount">0</span></button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="badge">18+ · Premium CBD liquids</div>
+        <h1>VapeCBD<br><span>качество, которое ощущается</span></h1>
+        <p>Премиальные CBD e-жидкости 15 мл с выразительными вкусами, мягкой подачей и аккуратным балансом.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#catalog">Открыть каталог</a>
+          <button class="btn ghost" onclick="openCart()">Оформить заказ</button>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="img/catalog.jpg" alt="Ассортимент VapeCBD">
+        <div class="hero-float">
+          <strong>12 позиций</strong>
+          <span>0.5% и 1% · 15 мл</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="section-head">
+        <h2>Каталог</h2>
+        <p>Выберите вкус, концентрацию и добавьте товар в корзину. Оформление заказа — прямо на сайте.</p>
+      </div>
+
+      <div class="products" id="products"></div>
+    </section>
+
+    <section class="section split" id="payment">
+      <div>
+        <h2>Оплата</h2>
+        <p>При оформлении заказа выберите удобный способ оплаты. После отправки заявки менеджер подтвердит детали.</p>
+      </div>
+      <div class="cards4">
+        <div>💳 <b>Карта</b><span>Быстрая оплата</span></div>
+        <div>📲 <b>QR</b><span>По реквизитам</span></div>
+        <div>🌍 <b>Трансгран</b><span>Международный перевод</span></div>
+        <div>₮ <b>USDT</b><span>Криптооплата</span></div>
+      </div>
+    </section>
+
+    <section class="section split" id="delivery">
+      <div>
+        <h2>Доставка</h2>
+        <p>Доступные варианты доставки указываются при оформлении заказа.</p>
+      </div>
+      <div class="cards3">
+        <div><b>Почта России</b><span>В отделение или по адресу</span></div>
+        <div><b>СДЭК</b><span>ПВЗ или курьер</span></div>
+        <div><b>Самовывоз</b><span>После согласования</span></div>
+      </div>
+    </section>
+
+    <section class="notice">
+      <h2>Важно</h2>
+      <p>18+. Информация на сайте не является медицинской рекомендацией. Перед использованием учитывайте индивидуальные особенности и действующее законодательство вашего региона.</p>
+    </section>
+  </main>
+
+  <aside class="cart" id="cart">
+    <div class="cart-head">
+      <h3>Корзина</h3>
+      <button onclick="closeCart()">×</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="total">
+      <span>Итого</span>
+      <strong id="cartTotal">0 ₽</strong>
+    </div>
+
+    <form class="checkout" onsubmit="submitOrder(event)">
+      <input id="name" placeholder="Имя" required>
+      <input id="telegram" placeholder="Telegram" required>
+      <input id="email" placeholder="Email">
+      <select id="delivery">
+        <option>Почта России</option>
+        <option>СДЭК</option>
+        <option>Самовывоз</option>
+      </select>
+      <textarea id="address" placeholder="Адрес доставки или комментарий" required></textarea>
+      <select id="payment">
+        <option>Оплата картой</option>
+        <option>QR</option>
+        <option>Трансгран</option>
+        <option>USDT</option>
+      </select>
+      <button class="btn" type="submit">Оформить заказ</button>
+      <p class="status" id="status"></p>
+    </form>
+  </aside>
+
+  <footer>
+    <div>VapeCBD © 2026</div>
+    <div>
+      <a href="privacy.html">Политика конфиденциальности</a>
+      <a href="terms.html">Пользовательское соглашение</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
