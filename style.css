@@ -93,7 +93,7 @@ nav a:hover {
   background-position: center;
   background-repeat: no-repeat;
 
-  filter: brightness(1.15) saturate(1.1);
+  filter: brightness(1.15);
 }
 
 .hero-shade {
