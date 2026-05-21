@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Корзина — VapeCBD</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html" class="logo">Vape<span>CBD</span></a>
+  <nav>
+    <a href="catalog.html">Каталог</a>
+    <a href="cart.html">Корзина</a>
+    <a href="docs.html">Документация</a>
+  </nav>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <p>Checkout</p>
+    <h1>Корзина</h1>
+  </div>
+
+  <section class="checkout-grid">
+    <div class="order-box">
+      <h2>Ваш заказ</h2>
+      <div class="cart-empty">
+        Корзина пока пустая
+      </div>
+
+      <div class="cart-total">Итого: 0 ₽</div>
+    </div>
+
+    <form class="form-box">
+      <h2>Оформление</h2>
+      <input placeholder="Имя">
+      <input placeholder="Telegram">
+      <input placeholder="Email">
+      <select><option>Почта России</option><option>СДЭК</option><option>Самовывоз</option></select>
+      <textarea placeholder="Адрес доставки или комментарий"></textarea>
+      <select><option>Оплата картой</option><option>QR</option><option>Трансгран</option><option>USDT</option></select>
+      <button type="button" class="btn" onclick="showThanks()">Перейти к оплате</button><div id="thanks" style="display:none;margin-top:18px;color:#9cff6d;font-size:18px;line-height:1.6">Спасибо за покупку.<br>Наш менеджер свяжется с вами.</div><script>function showThanks(){document.getElementById("thanks").style.display="block";}</script>
+    </form>
+  </section>
+</main>
+
+</body>
+</html>
