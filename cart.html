@@ -12,7 +12,7 @@
   <a href="index.html" class="logo">Vape<span>CBD</span></a>
   <nav>
     <a href="catalog.html">Каталог</a>
-    <a href="cart.html">Корзина</a>
+    <a href="cart.html">Корзина <span id="cartCount">0</span></a>
     <a href="docs.html">Документация</a>
   </nav>
 </header>
@@ -26,25 +26,52 @@
   <section class="checkout-grid">
     <div class="order-box">
       <h2>Ваш заказ</h2>
-      <div class="cart-empty">
-        Корзина пока пустая
+
+      <div id="cartItems"></div>
+
+      <div class="cart-total">
+        Итого: <span id="cartTotal">0 ₽</span>
       </div>
 
-      <div class="cart-total">Итого: 0 ₽</div>
+      <button type="button" class="btn ghost" onclick="clearCart()">
+        Очистить корзину
+      </button>
     </div>
 
     <form class="form-box">
       <h2>Оформление</h2>
+
       <input placeholder="Имя">
       <input placeholder="Telegram">
       <input placeholder="Email">
-      <select><option>Почта России</option><option>СДЭК</option><option>Самовывоз</option></select>
+
+      <select>
+        <option>Почта России</option>
+        <option>СДЭК</option>
+        <option>Самовывоз</option>
+      </select>
+
       <textarea placeholder="Адрес доставки или комментарий"></textarea>
-      <select><option>Оплата картой</option><option>QR</option><option>Трансгран</option><option>USDT</option></select>
-      <button type="button" class="btn" onclick="showThanks()">Перейти к оплате</button><div id="thanks" style="display:none;margin-top:18px;color:#9cff6d;font-size:18px;line-height:1.6">Спасибо за покупку.<br>Наш менеджер свяжется с вами.</div><script>function showThanks(){document.getElementById("thanks").style.display="block";}</script>
+
+      <select>
+        <option>Оплата картой</option>
+        <option>QR</option>
+        <option>Трансгран</option>
+        <option>USDT</option>
+      </select>
+
+      <button type="button" class="btn" onclick="showThanks()">
+        Перейти к оплате
+      </button>
+
+      <div id="thanks" class="thanks">
+        Спасибо за покупку.<br>
+        Наш менеджер свяжется с вами.
+      </div>
     </form>
   </section>
 </main>
 
+<script src="script.js"></script>
 </body>
 </html>
