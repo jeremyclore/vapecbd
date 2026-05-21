@@ -93,25 +93,26 @@ nav a:hover {
   background-position: center;
   background-repeat: no-repeat;
 
-  filter: brightness(1.15);
+  filter: brightness(1.18) saturate(1.08);
 }
 
-.hero-shade {
-  position: absolute;
-  inset: 0;
+.hero-shade{
+  position:absolute;
+  inset:0;
 
   background:
     linear-gradient(
       90deg,
-      rgba(0, 0, 0, 0.96) 0%,
-      rgba(0, 0, 0, 0.86) 32%,
-      rgba(0, 0, 0, 0.48) 68%,
-      rgba(0, 0, 0, 0.35) 100%
+      rgba(0,0,0,0.88) 0%,
+      rgba(0,0,0,0.72) 28%,
+      rgba(0,0,0,0.28) 62%,
+      rgba(0,0,0,0.12) 100%
     ),
+
     linear-gradient(
       180deg,
-      rgba(5, 7, 6, 0.3) 0%,
-      rgba(5, 7, 6, 0.95) 100%
+      rgba(5,7,6,0.12) 0%,
+      rgba(5,7,6,0.62) 100%
     );
 }
 
