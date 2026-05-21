@@ -444,3 +444,7 @@ footer {
     flex-direction: column;
   }
 }
+.add-cart {
+  width: 100%;
+  margin-top: 18px;
+}
